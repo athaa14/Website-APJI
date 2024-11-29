@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #013298;
+    --secondary-color: #4169e1;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    perspective: 1000px;
+}
+
+.form-container {
+    display: flex;
+    width: 200%;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.form-container.active {
+    transform: translateX(-50%);
+}
+
+.login-form, .register-form {
+    width: 50%;
+    padding: 40px;
+    transition: opacity 0.6s ease;
+    backface-visibility: hidden;
+}
+
+h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(106, 90, 205, 0.1);
+}
+
+.input-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.input-group input:focus + i {
+    color: var(--primary-color);
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-text {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.toggle-text a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.toggle-text a:hover {
+    color: var(--secondary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+    .container {
+        width: 95%;
+        margin: 10px;
+    }
+}
