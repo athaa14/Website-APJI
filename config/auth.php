@@ -112,4 +112,7 @@ return [
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
 
+    'redirect_after_logout' => '/loginForm', // Tambahkan jika perlu
+
+
 ];

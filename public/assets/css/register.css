@@ -66,7 +66,7 @@ h2 {
     margin-bottom: 20px;
 }
 
-.input-group input, 
+.input-group input,
 .input-group select {
     width: 100%;
     padding: 12px 15px;
@@ -76,7 +76,7 @@ h2 {
     transition: all 0.3s ease;
 }
 
-.input-group input:focus, 
+.input-group input:focus,
 .input-group select:focus {
     border-color: var(--primary-color);
     box-shadow: 0 0 10px rgba(106, 90, 205, 0.1);
@@ -187,4 +187,16 @@ h2 {
 
 .toggle-text a:hover {
     color: var(--secondary-color);
+}
+
+.file-preview img {
+    margin-top: 10px;
+    max-width: 150px;
+    height: auto;
+}
+
+.file-preview {
+    margin-top: 10px;
+    font-style: italic;
+    color: gray;
 }
