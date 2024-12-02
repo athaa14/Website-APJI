@@ -46,7 +46,7 @@ class LoginController extends Controller
             }
         } else {
             // Jika autentikasi gagal
-            return back()->with('error', 'Kredensial tidak valid, coba lagi!');
+            return back()->with('error', 'Password atau Email salah');
         }
     }
 
@@ -54,5 +54,6 @@ class LoginController extends Controller
     {
         Auth::logout();
         return redirect()->route('loginForm');
+
     }
 }

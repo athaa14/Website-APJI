@@ -26,7 +26,8 @@ Route::get('/loginForm', [LoginController::class, 'login'])->name('loginForm');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Rute untuk halaman register
-Route::get('/registerForm', [RegisterController::class, 'register'])->name('registerForm');
+Route::get('/register', [RegisterController::class, 'registerShow'])->name('registerForm');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 // Rute untuk proses autentikasi (login)
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
@@ -49,4 +50,4 @@ Route::get('/anggota/dashboard', function () {
 
 
 
-require __DIR__.'/auth.php';
+// require __DIR__ . '/auth.php';

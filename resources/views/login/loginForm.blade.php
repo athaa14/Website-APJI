@@ -10,6 +10,14 @@
 </head>
 
 <body>
+
+    @if (session('success'))
+        <div style="color: green;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <div class="container">
         <div class="form-container" id="formContainer">
             <div class="login-form">
