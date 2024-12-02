@@ -23,17 +23,23 @@ Route::get('/', [LandingPageController::class, 'landingPage']); // Rute landing 
 // Rute untuk halaman login
 Route::get('/loginForm', [LoginController::class, 'login'])->name('loginForm');
 
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 // Rute untuk halaman register
 Route::get('/registerForm', [RegisterController::class, 'register'])->name('registerForm');
 
 // Rute untuk proses autentikasi (login)
-Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 
-// Rute untuk dashboard, hanya bisa diakses oleh yang sudah login
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Rute untuk halaman admin
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard'); // Halaman dashboard admin
+})->name('admin.dashboard');
 
+// Rute untuk halaman anggota
+Route::get('/anggota/dashboard', function () {
+    return view('anggota.dashboard'); // Halaman dashboard anggota
+})->name('anggota.dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

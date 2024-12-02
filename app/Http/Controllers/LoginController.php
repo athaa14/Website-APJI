@@ -18,7 +18,7 @@ class LoginController extends Controller
         // Validasi data yang dikirimkan
         $validated = Validator::make($request->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:6',
         ]);
 
         // Jika validasi gagal
@@ -31,13 +31,28 @@ class LoginController extends Controller
         // Mencoba autentikasi pengguna
         if (Auth::attempt([
             'email' => $request->email,
-            'password' => $request->password
-        ])) {
-            // Jika autentikasi berhasil, redirect ke halaman dashboard
-            return redirect()->intended('dashboard'); // ganti 'dashboard' dengan halaman yang diinginkan
+            'password' => $request->password,
+           ])) {
+            // Jika autentikasi berhasil, periksa role pengguna
+            $user = Auth::user();
+
+            // Arahkan pengguna berdasarkan role mereka
+            if ($user->role === 'admin') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role === 'anggota') {
+                return redirect()->route('anggota.dashboard');
+            } else {
+                return redirect()->route('landingPage'); // Halaman default jika role tidak sesuai
+            }
         } else {
             // Jika autentikasi gagal
             return back()->with('error', 'Kredensial tidak valid, coba lagi!');
         }
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('loginForm');
     }
 }
