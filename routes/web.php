@@ -18,7 +18,7 @@ use Inertia\Inertia;
 // });
 
 
-Route::get('/', [LandingPageController::class, 'landingPage']); // Rute landing page
+Route::get('/', [LandingPageController::class, 'landingPage'])->name('landingPage'); // Rute landing page
 
 // Rute untuk halaman login
 Route::get('/loginForm', [LoginController::class, 'login'])->name('loginForm');
