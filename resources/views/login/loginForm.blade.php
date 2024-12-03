@@ -11,31 +11,37 @@
 
 <body>
 
+    <!-- Display success message if there's one in session -->
     @if (session('success'))
-        <div style="color: green;">
+        <div style="color: green; text-align: center;">
             {{ session('success') }}
         </div>
     @endif
 
-
-    <div class="container">
+    <div class="login-container">
         <div class="form-container" id="formContainer">
-            <div class="login-form">
-                <h2>Selamat Datang</h2>
+            <div class="login-header">
+                <h1>Welcome Back</h1>
+                <p>Sign in to continue to your account</p>
+            </div>
 
-                <!-- Menampilkan pesan error jika ada -->
+            <div class="login-form">
+                <!-- Display error message if authentication fails -->
                 @if (session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
+                    <div class="alert alert-danger" style="color: red; margin-bottom: 20px;">
+                        {{ session('error') }}
+                    </div>
                 @endif
 
+                <!-- Login Form -->
                 <form action="{{ route('authenticate') }}" method="POST">
                     @csrf
                     <div class="input-group">
-                        <input type="email" name="email" placeholder="Email" required value="{{ old('email') }}">
+                        <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
                         <i class="fas fa-envelope"></i>
                     </div>
                     @error('email')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger" style="font-size: 12px;">{{ $message }}</div>
                     @enderror
 
                     <div class="input-group">
@@ -43,18 +49,19 @@
                         <i class="fas fa-lock"></i>
                     </div>
                     @error('password')
-                        <div class="text-danger">{{ $message }}</div>
+                        <div class="text-danger" style="font-size: 12px;">{{ $message }}</div>
                     @enderror
 
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="login-btn">Login</button>
                 </form>
 
-                <div class="toggle-text">
+                <div class="register-link">
                     Anggota Baru? <a href="{{ route('registerForm') }}">Daftar</a>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

@@ -1,166 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Registration</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset ('assets/css/register.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
+
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error') }}
+        </div>
+    @endif
+
 </head>
+
 <body>
-    <div class="container">
-        <div class="registration-form">
-            <div class="progress-bar">
-                <div class="progress-step active">1</div>
-                <div class="progress-step">2</div>
-                <div class="progress-step">3</div>
-                <div class="progress-step">4</div>
+    <div class="registration-container">
+        <div class="progress-bar">
+            <div class="progress-step active">1</div>
+            <div class="progress-step">2</div>
+            <div class="progress-step">3</div>
+            <div class="progress-step">4</div>
+        </div>
+
+        <form id="multi-step-form">
+            <!-- Step 1 - Basic Information -->
+            <div class="step active" id="step-1">
+                <div class="registration-header">
+                    <h1>Informasi dasar</h1>
+                    <p>Masukan informasi dasar</p>
+                </div>
+
+                <div class="input-group">
+                    <select name="tipe_member" required>
+                        <option value="">Pilih Tipe Member</option>
+                        <option value="Biasa">Biasa</option>
+                        <option value="Terdaftar">Terdaftar</option>
+                    </select>
+                    <i class="fas fa-user-tag"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" placeholder="Email Usaha" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="nama_usaha" placeholder="Nama Usaha" required>
+                    <i class="fas fa-building"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="password" placeholder="Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" name="confirm-password" placeholder="Konfirmasi Password" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button type="button" class="btn" onclick="nextStep()">Next</button>
+                </div>
+
+                <div class="login-link">
+                    Already have an account? <a href="{{ route('loginForm') }}">Sign In</a>
+                </div>
             </div>
 
-            <form id="multi-step-form" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
-                @csrf
-                <!-- Step 1 - Informasi Dasar -->
-                <div class="step active" id="step-1">
-                    <h2>Informasi Dasar</h2>
-                    <div class="input-group">
-                        <select name="tipe_member" id="member-type" required>
-                            <option value="">Pilih Tipe Member</option>
-                            <option value="biasa">Biasa</option>
-                            <option value="terdaftar">Terdaftar</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <input type="email" name="email" placeholder="Email" required>
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="nama_usaha" placeholder="Nama Perusahaan" required>
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" name="password" placeholder="Password" required>
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="navigation-buttons">
-                        <button type="button" class="btn" onclick="nextStep()">Selanjutnya</button>
-                        <div class="toggle-text">
-                            Bagian dari kami? <a href="{{ route('loginForm')}}">Sign In</a>
-                        </div>
-                    </div>
+            <!-- Step 2 - Address Information -->
+            <div class="step" id="step-2">
+                <div class="registration-header">
+                    <h1>Detail Alamat</h1>
+                    <p>Masukan alamat usaha anda</p>
                 </div>
 
-                <!-- Step 2 - Alamat -->
-                <div class="step" id="step-2">
-                    <h2>Informasi Alamat</h2>
-                    <div class="input-group">
-                        <input type="text" name="alamat" placeholder="Alamat Lengkap" required>
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="provinsi" placeholder="Provinsi" required>
-                        <i class="fas fa-globe"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="kota" placeholder="Kota" required>
-                        <i class="fas fa-city"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="kecamatan" placeholder="Kecamatan" required>
-                        <i class="fas fa-map-signs"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="kode_pos" placeholder="Kode Pos" required>
-                        <i class="fas fa-mail-bulk"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="tel" name="no_telp" placeholder="Nomor Telepon" required>
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="navigation-buttons">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep()">Kembali</button>
-                        <button type="button" class="btn" onclick="nextStep()">Selanjutnya</button>
-                    </div>
+                <div class="input-group">
+                    <input type="text" name="alamat" placeholder="Alamat" required>
+                    <i class="fas fa-map-marker-alt"></i>
                 </div>
 
-                <!-- Step 3 - Informasi Pemilik -->
-                <div class="step" id="step-3">
-                    <h2>Informasi Pemilik</h2>
-                    <div class="input-group">
-                        <input type="text" name="nama_pemilik" placeholder="Nama Pemilik" required>
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="no_ktp" placeholder="Nomor KTP/NIK" required>
-                        <i class="fas fa-id-card"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="no_sku" placeholder="Nomor SKU/PIRT">
-                        <i class="fas fa-receipt"></i>
-                    </div>
-                    <div class="input-group">
-                        <input type="text" name="no_npwp" placeholder="Nomor NPWP Pemilik">
-                        <i class="fas fa-file-invoice"></i>
-                    </div>
-                    <div class="navigation-buttons">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep()">Kembali</button>
-                        <button type="button" class="btn" onclick="nextStep()">Selanjutnya</button>
-                    </div>
+                <div class="input-group">
+                    <input type="text" name="provinsi" placeholder="Provinsi" required>
+                    <i class="fas fa-globe"></i>
                 </div>
 
-                <!-- Step 4 - Dokumen dan Kualifikasi -->
-                <div class="step" id="step-4">
-                    <h2>Dokumen dan Kualifikasi</h2>
-                    <div class="input-group">
-                        <select name="k_usaha" id="business-qualification" required>
-                            <option value="">Pilih Kualifikasi Usaha</option>
-                            <option value="mikro">Mikro</option>
-                            <option value="kecil">Kecil</option>
-                            <option value="menengah">Menengah</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <select name="j_usaha" id="business-type" required>
-                            <option value="">Pilih Jenis Usaha</option>
-                            <option value="makanan">Makanan</option>
-                            <option value="minuman">Minuman</option>
-                            <option value="jasa">Jasa</option>
-                        </select>
-                    </div>
-                    {{-- <div class="input-group">
-                        <div class="file-upload">
-                            <input type="file" name="ktp" id="upload-ktp" accept=".pdf,.jpg,.jpeg,.png" required>
-                            <p>Upload KTP</p>
-                        </div>
-                        <div class="file-preview" id="ktp-preview"></div>
-                    </div>
-                    <div class="input-group">
-                        <div class="file-upload">
-                            <input type="file" name="npwp" id="upload-npwp" accept=".pdf,.jpg,.jpeg,.png">
-                            <p>Upload NPWP</p>
-                        </div>
-                        <div class="file-preview" id="npwp-preview"></div>
-                    </div>
-                    <div class="input-group">
-                        <div class="file-upload">
-                            <input type="file" name="sku" id="upload-sku" accept=".pdf,.jpg,.jpeg,.png">
-                            <p>Upload SKU/PIRT</p>
-                        </div>
-                        <div class="file-preview" id="sku-preview"></div>
-                    </div> --}}
-                    <div class="navigation-buttons">
-                        <button type="button" class="btn btn-secondary" onclick="prevStep()">Kembali</button>
-                        <button type="submit" class="btn">Daftar</button>
-                    </div>
+                <div class="input-group">
+                    <input type="text" name="kota" placeholder="Kota" required>
+                    <i class="fas fa-city"></i>
                 </div>
-            </form>
 
-        </div>
+                <div class="input-group">
+                    <input type="text" name="kecamatan" placeholder="Kecamatan" required>
+                    <i class="fas fa-map-signs"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="kode_pos" placeholder="Kode Pos" required>
+                    <i class="fas fa-mail-bulk"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" name="no_telp" placeholder="No Telepon" required>
+                    <i class="fas fa-phone"></i>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button type="button" class="btn" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3 - Owner Information -->
+            <div class="step" id="step-3">
+                <div class="registration-header">
+                    <h1>Detail Pemilik</h1>
+                    <p>Masukan informais mengenai pemilik</p>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="nama_pemilik" placeholder="Nama Pemilik" required>
+                    <i class="fas fa-user"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="no_ktpr" placeholder="KTP/NIK" required>
+                    <i class="fas fa-id-card"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="no_sku" placeholder="SKU/PIRT">
+                    <i class="fas fa-receipt"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="no_npwp" placeholder="NPWP">
+                    <i class="fas fa-file-invoice"></i>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button type="button" class="btn" onclick="nextStep()">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 4 - Business Qualification -->
+            <div class="step" id="step-4">
+                <div class="registration-header">
+                    <h1>Detail Usaha</h1>
+                    <p>Detail untuk usaha anda</p>
+                </div>
+
+                <div class="input-group">
+                    <select name="k_usaha" required>
+                        <option value="">Kualifikasi Usaha</option>
+                        <option value="Micro">Mikro</option>
+                        <option value="Kecil">Kecil</option>
+                        <option value="Menengah">Menengah</option>
+                    </select>
+                    <i class="fas fa-chart-line"></i>
+                </div>
+
+                <div class="input-group">
+                    <select name="j_usaha" required>
+                        <option value="">Jenis Usaha</option>
+                        <option value="Makanan">Makanan</option>
+                        <option value="Minuman">Makanan</option>
+                        <option value="Jasa">Jasa</option>
+                    </select>
+                    <i class="fas fa-briefcase"></i>
+                </div>
+
+                <div class="navigation-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep()">Back</button>
+                    <button type="submit" class="btn">Register</button>
+                </div>
+            </div>
+        </form>
     </div>
-
-    <script src="{{ asset ('assets/js/login.js') }}"></script>
 </body>
+
+<script src="{{ asset('assets/js/register.js') }}"></script>
+
 </html>
