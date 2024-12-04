@@ -31,7 +31,8 @@
             <div class="progress-step">4</div>
         </div>
 
-        <form id="multi-step-form">
+        <form id="multi-step-form" action="{{ route('register') }}" method="POST">
+            @csrf
             <!-- Step 1 - Basic Information -->
             <div class="step active" id="step-1">
                 <div class="registration-header">
@@ -42,8 +43,8 @@
                 <div class="input-group">
                     <select name="tipe_member" required>
                         <option value="">Pilih Tipe Member</option>
-                        <option value="Biasa">Biasa</option>
                         <option value="Terdaftar">Terdaftar</option>
+                        <option value="Biasa">Biasa</option>
                     </select>
                     <i class="fas fa-user-tag"></i>
                 </div>
@@ -64,7 +65,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="password" name="confirm-password" placeholder="Konfirmasi Password" required>
+                    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required>
                     <i class="fas fa-lock"></i>
                 </div>
 
@@ -133,7 +134,7 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="text" name="no_ktpr" placeholder="KTP/NIK" required>
+                    <input type="text" name="no_ktp" placeholder="KTP/NIK" required>
                     <i class="fas fa-id-card"></i>
                 </div>
 
@@ -163,7 +164,7 @@
                 <div class="input-group">
                     <select name="k_usaha" required>
                         <option value="">Kualifikasi Usaha</option>
-                        <option value="Micro">Mikro</option>
+                        <option value="Mikro">Mikro</option>
                         <option value="Kecil">Kecil</option>
                         <option value="Menengah">Menengah</option>
                     </select>
@@ -174,7 +175,7 @@
                     <select name="j_usaha" required>
                         <option value="">Jenis Usaha</option>
                         <option value="Makanan">Makanan</option>
-                        <option value="Minuman">Makanan</option>
+                        <option value="Minuman">Minuman</option>
                         <option value="Jasa">Jasa</option>
                     </select>
                     <i class="fas fa-briefcase"></i>

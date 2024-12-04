@@ -12,7 +12,7 @@
         </p>
         <div class="mt-5 animate__animated animate__zoomIn">
             <a href="{{ route('loginForm')}}" class="btn btn-primary btn-lg me-3">Login</a>
-            <a href="{{ route('registerForm')}}" class="btn btn-outline-light btn-lg">Menjadi Anggota</a>
+            <a href="{{ route('registerShow')}}" class="btn btn-outline-light btn-lg">Menjadi Anggota</a>
         </div>
     </div>
 </section>

@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
@@ -18,6 +19,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+
         // Validasi data
         $validated = $request->validate([
             'email' => 'required|email|unique:users,email',
@@ -41,7 +43,7 @@ class RegisterController extends Controller
         try {
             // Simpan data pengguna
             $pengguna = DataPengguna::create($validated);
-
+        
             // Simpan user dengan role anggota
             User::create([
                 'email' => $request->email,
@@ -51,11 +53,12 @@ class RegisterController extends Controller
                 'role' => 'anggota',
                 'status' => 'active',
             ]);
-
+        
             Session::flash('success', 'Pendaftaran berhasil! Selamat datang.');
             return redirect()->route('loginForm');
         } catch (\Exception $e) {
             // Debugging error
+            Log::error('Error saat mendaftar: ' . $e->getMessage());
             return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }

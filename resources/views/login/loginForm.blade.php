@@ -11,10 +11,14 @@
 
 <body>
 
-    <!-- Display success message if there's one in session -->
-    @if (session('success'))
-        <div style="color: green; text-align: center;">
-            {{ session('success') }}
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger">
+            {{ Session::get('error') }}
         </div>
     @endif
 
@@ -56,7 +60,7 @@
                 </form>
 
                 <div class="register-link">
-                    Anggota Baru? <a href="{{ route('registerForm') }}">Daftar</a>
+                    Anggota Baru? <a href="{{ route('registerShow') }}">Daftar</a>
                 </div>
             </div>
         </div>

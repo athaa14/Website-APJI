@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 steps[currentStep].classList.add('active');
                 updateProgressBar();
             } else {
+                // Validasi langkah terakhir selesai, kirim formulir
                 form.submit();
             }
         } else {

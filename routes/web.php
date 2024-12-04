@@ -19,14 +19,12 @@ use Inertia\Inertia;
 
 
 Route::get('/', [LandingPageController::class, 'landingPage'])->name('landingPage'); // Rute landing page
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Rute untuk halaman login
 Route::get('/loginForm', [LoginController::class, 'login'])->name('loginForm');
-
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
 // Rute untuk halaman register
-Route::get('/register', [RegisterController::class, 'registerShow'])->name('registerForm');
+Route::get('/register', [RegisterController::class, 'registerShow'])->name('registerShow');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 // Rute untuk proses autentikasi (login)
