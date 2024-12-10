@@ -23,6 +23,13 @@ body {
     line-height: 1.5;
 }
 
+.logo {
+    width: 255px;  /* Adjust this value to resize the logo */
+    height: auto;  /* Maintain the aspect ratio */
+    /* margin-bottom: 50px; */
+}
+
+
 .login-container {
     width: 100%;
     max-width: 450px;

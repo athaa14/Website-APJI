@@ -16,18 +16,11 @@
     <div class="login-container">
         <div class="form-container" id="formContainer">
             <div class="login-header">
-                <h1>Welcome Back</h1>
-                <p>Sign in to continue to your account</p>
+                <img src="{{ asset('assets/img/logoapjifix.png') }}" alt="Logo" class="logo">
+                <p>Sign in untuk melanjutkan</p>
             </div>
 
             <div class="login-form">
-                <!-- Display error message if authentication fails -->
-                @if (session('error'))
-                    <div class="alert alert-danger" style="color: red; margin-bottom: 20px;">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
                 <!-- Login Form -->
                 <form action="{{ route('authenticate') }}" method="POST">
                     @csrf
