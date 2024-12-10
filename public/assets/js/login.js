@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
             duration: 3000,
             gravity: "top",
             position: "right",
-            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            backgroundColor: "#dc3545",
             stopOnFocus: true,
         }).showToast();
     }
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
             duration: 3000,
             gravity: "top",
             position: "right",
-            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            backgroundColor: "#28a745",
             stopOnFocus: true,
         }).showToast();
     }

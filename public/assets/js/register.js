@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         duration: 3000, // Durasi toast
                         gravity: "top", // Posisi vertikal
                         position: "center", // Posisi horizontal
-                        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                        backgroundColor: "#dc3545",
                         stopOnFocus: true, // Hentikan jika fokus pada toast
                     }).showToast();
                 }
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 duration: 3000, // Durasi toast
                 gravity: "top", // Posisi vertikal
                 position: "center", // Posisi horizontal
-                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                backgroundColor: "#dc3545",
                 stopOnFocus: true, // Hentikan jika fokus pada toast
             }).showToast();
         }
