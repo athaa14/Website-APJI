@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('multi-step-form');
     const steps = document.querySelectorAll('.step');
     const progressSteps = document.querySelectorAll('.progress-step');
@@ -62,9 +62,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 form.submit();
             }
         } else {
-            alert('Harap lengkapi semua data dengan benar sebelum melanjutkan.');
+            Toastify({
+                text: "Harap lengkapi semua data dengan benar sebelum melanjutkan.",
+                duration: 3000, // Durasi toast
+                gravity: "top", // Posisi vertikal
+                position: "center", // Posisi horizontal
+                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                stopOnFocus: true, // Hentikan jika fokus pada toast
+            }).showToast();
         }
     }
+
 
     // Kembali ke langkah sebelumnya
     function prevStep() {
@@ -90,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Hilangkan error saat pengguna mengetik ulang
     const allInputs = document.querySelectorAll('input, select');
     allInputs.forEach(input => {
-        input.addEventListener('input', function() {
+        input.addEventListener('input', function () {
             if (this.value.trim()) {
                 this.classList.remove('input-error');
             }

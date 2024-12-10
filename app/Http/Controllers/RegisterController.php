@@ -43,7 +43,7 @@ class RegisterController extends Controller
         try {
             // Simpan data pengguna
             $pengguna = DataPengguna::create($validated);
-        
+
             // Simpan user dengan role anggota
             User::create([
                 'email' => $request->email,
@@ -53,13 +53,14 @@ class RegisterController extends Controller
                 'role' => 'anggota',
                 'status' => 'active',
             ]);
-        
-            Session::flash('success', 'Pendaftaran berhasil! Selamat datang.');
-            return redirect()->route('loginForm');
+
+            // Flash pesan sukses
+            return redirect()->route('loginForm')->with('success', 'Pendaftaran berhasil! Silahkan Login.');
         } catch (\Exception $e) {
-            // Debugging error
+            // Log error untuk debugging
             Log::error('Error saat mendaftar: ' . $e->getMessage());
-            return back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
+            // Kembalikan ke halaman sebelumnya dengan pesan error
+            return back()->with('error', 'Terjadi kesalahan saat pendaftaran: ' . $e->getMessage());
         }
     }
 

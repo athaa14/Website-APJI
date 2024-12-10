@@ -55,20 +55,51 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Optional: Toggle password visibility
-    const passwordInput = loginForm.querySelector('input[type="password"]');
-    const togglePasswordBtn = document.createElement('button');
-    togglePasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
-    togglePasswordBtn.classList.add('toggle-password');
-    passwordInput.parentNode.insertBefore(togglePasswordBtn, passwordInput.nextSibling);
-
-    togglePasswordBtn.addEventListener('click', function() {
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            togglePasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
-        } else {
-            passwordInput.type = 'password';
-            togglePasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.querySelector('input[type="password"]');
+        const togglePasswordBtn = document.createElement('button');
+    
+        togglePasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+        togglePasswordBtn.classList.add('toggle-password');
+        passwordInput.parentNode.insertBefore(togglePasswordBtn, passwordInput.nextSibling);
+    
+        togglePasswordBtn.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePasswordBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = 'password';
+                togglePasswordBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        });
     });
+    
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const successMessage = "{{ Session::get('success') }}";
+    const errorMessage = "{{ Session::get('error') }}";
+
+    if (successMessage) {
+        Toastify({
+            text: successMessage,
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+            stopOnFocus: true,
+        }).showToast();
+    }
+
+    if (errorMessage) {
+        Toastify({
+            text: errorMessage,
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+            stopOnFocus: true,
+        }).showToast();
+    }
+});
+

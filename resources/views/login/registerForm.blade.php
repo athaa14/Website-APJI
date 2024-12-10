@@ -8,18 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/register.css') }}">
-
-    @if (Session::has('success'))
-        <div class="alert alert-success">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-    @if (Session::has('error'))
-        <div class="alert alert-danger">
-            {{ Session::get('error') }}
-        </div>
-    @endif
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 </head>
 
 <body>
@@ -188,8 +177,34 @@
             </div>
         </form>
     </div>
-</body>
 
-<script src="{{ asset('assets/js/register.js') }}"></script>
+    <script src="{{ asset('assets/js/register.js') }}"></script> <!-- Pastikan ini diakhiri dengan </script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <script>
+        // Menampilkan Toastify saat ada pesan flash
+        @if (Session::has('success'))
+            Toastify({
+                text: "{{ Session::get('success') }}",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+                stopOnFocus: true,
+            }).showToast();
+        @endif
+
+        @if (Session::has('error'))
+            Toastify({
+                text: "{{ Session::get('error') }}",
+                duration: 3000,
+                gravity: "top",
+                position: "right",
+                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                stopOnFocus: true,
+            }).showToast();
+        @endif
+    </script>
+</body>
 
 </html>
