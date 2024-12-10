@@ -35,12 +35,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            if (input.name === 'confirm-password') {
+            if (input.name === 'password_confirmation') {
                 const passwordInput = document.querySelector('input[name="password"]');
                 if (input.value !== passwordInput.value) {
                     input.classList.add('input-error');
                     passwordInput.classList.add('input-error');
                     isValid = false;
+                    // Show error toast for password mismatch
+                    Toastify({
+                        text: "Password tidak sesuai.",
+                        duration: 3000, // Durasi toast
+                        gravity: "top", // Posisi vertikal
+                        position: "center", // Posisi horizontal
+                        backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
+                        stopOnFocus: true, // Hentikan jika fokus pada toast
+                    }).showToast();
                 }
             }
         });
