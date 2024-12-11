@@ -62,9 +62,7 @@
                     <button type="button" class="btn" onclick="nextStep()">Next</button>
                 </div>
 
-                <div class="login-link">
-                    Already have an account? <a href="{{ route('loginForm') }}">Sign In</a>
-                </div>
+                <p class="text-center mt-3">Anggota Baru? <a href="{{ route('loginForm') }}">Daftar di sini</a></p>
             </div>
 
             <!-- Step 2 - Address Information -->
@@ -189,7 +187,7 @@
                 duration: 3000,
                 gravity: "top",
                 position: "right",
-                backgroundColor: "#28a745",
+                backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
                 stopOnFocus: true,
             }).showToast();
         @endif
@@ -200,7 +198,7 @@
                 duration: 3000,
                 gravity: "top",
                 position: "right",
-                backgroundColor: "#dc3545",
+                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
                 stopOnFocus: true,
             }).showToast();
         @endif

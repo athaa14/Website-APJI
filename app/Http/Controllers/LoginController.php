@@ -15,6 +15,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        // dd($request);
         // Validasi data yang dikirimkan
         $validated = Validator::make($request->all(), [
             'email' => 'required|email',

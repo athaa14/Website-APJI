@@ -5,32 +5,32 @@
 }
 
 :root {
-    --primary-color: #4A6CF7;
+    --primary-color: #003FA1;
     --secondary-color: #6A7CFE;
-    --background-color: #F4F7FF;
-    --text-color: #36394E;
+    --background-color: #f0f0f0;
+    --text-color: #333;
     --input-border: #E0E5EE;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: url('/frontend/img/4940019.jpg') repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
     line-height: 1.5;
+    margin: 0;
 }
 
 .registration-container {
-    width: 100%;
-    max-width: 500px;
+    width: 900px;
+    max-width: 95%;
     background: white;
-    border-radius: 16px;
-    box-shadow: 0 30px 60px rgba(32, 56, 117, 0.15);
-    padding: 40px;
-    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: all 0.3s ease;
 }
 
 .progress-bar {
@@ -47,7 +47,7 @@ body {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: var(--input-border);
+    background-color: #f0f0f0;
     transform: translateY(-50%);
     z-index: 1;
 }
@@ -56,11 +56,11 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: var(--input-border);
+    background: #f0f0f0;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: #333;
     position: relative;
     z-index: 2;
     font-weight: 600;
@@ -69,22 +69,24 @@ body {
 
 .progress-step.active {
     background: var(--primary-color);
+    color: white;
 }
 
 .registration-header {
-    text-align: center;
-    margin-bottom: 30px;
+    text-align: left;
+    margin-bottom: 20px;
 }
 
 .registration-header h1 {
-    color: var(--primary-color);
-    font-size: 28px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .registration-header p {
-    color: #8A94A6;
+    font-size: 14px;
+    color: #666;
 }
 
 .step {
@@ -102,100 +104,104 @@ body {
 }
 
 .input-group {
-    position: relative;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    background: var(--background-color);
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.input-group input,
-.input-group select {
-    width: 100%;
-    padding: 15px 20px 15px 50px;
-    border: 2px solid var(--input-border);
-    border-radius: 10px;
-    outline: none;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-.input-group input:focus,
-.input-group select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(74, 108, 247, 0.1);
+.input-group:focus-within {
+    background-color: #e0e0e0;
 }
 
 .input-group i {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #B0B7C3;
+    margin-right: 10px;
+    font-size: 18px;
+    color: var(--text-color);
     transition: color 0.3s ease;
+    min-width: 20px;
+    text-align: center;
 }
 
-.input-group input:focus + i,
-.input-group select:focus + i {
+.input-group i:hover {
     color: var(--primary-color);
+}
+
+.input-group input, 
+.input-group select {
+    border: none;
+    background: transparent;
+    outline: none;
+    flex: 1;
+    font-size: 14px;
+    color: var(--text-color);
+    width: 100%;
 }
 
 .navigation-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 20px;
+    gap: 15px;
 }
 
 .btn {
-    padding: 15px;
     background: var(--primary-color);
-    color: white;
+    color: #ffffff;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    padding: 12px 0;
     width: 48%;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn:hover {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+    transform: scale(1.02);
 }
 
 .btn-secondary {
-    background: #F1F5F9;
+    background: var(--background-color);
     color: var(--text-color);
 }
 
 .btn-secondary:hover {
-    background: #E2E8F0;
-    color: var(--text-color);
+    background: #e0e0e0;
 }
 
-.login-link {
+.text-center {
     text-align: center;
-    margin-top: 20px;
-    color: #8A94A6;
 }
 
-.login-link a {
+.mt-3 {
+    margin-top: 15px;
+}
+
+a {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
-.login-link a:hover {
-    color: var(--secondary-color);
+a:hover {
+    color: #1e5ac5;
 }
 
-@media (max-width: 480px) {
-    .registration-container {
-        padding: 30px 20px;
-    }
+.input-error {
+    background-color: #ffe6e6 !important;
+    border: 1px solid #ff4d4d;
+}
 
-    .registration-header h1 {
-        font-size: 24px;
+@media (max-width: 768px) {
+    .registration-container {
+        width: 100%;
+        border-radius: 0;
+        padding: 20px;
     }
 
     .navigation-buttons {
@@ -204,29 +210,48 @@ body {
 
     .btn {
         width: 100%;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 }
 
-.alert {
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 600;
+.input-group {
+    position: relative;
 }
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
+.password-wrapper {
+    position: relative;
+    width: 100%;
 }
 
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
+.password-wrapper input {
+    padding-right: 40px; /* Make space for the toggle button */
+    width: 100%;
 }
 
-.input-error {
-    background-color: #ffe6e6; /* Warna merah muda */
-    border-color: #ff4d4d; /* Warna merah */
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    z-index: 10;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.password-toggle i {
+    font-size: 16px;
+}
+
+/* Ensure icon is centered */
+.password-toggle i {
+    margin: 0;
+    padding: 0;
 }
