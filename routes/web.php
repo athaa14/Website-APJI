@@ -50,6 +50,9 @@ Route::get('/event/{id_event}', [AdminController::class, 'show'])->name('event.s
 Route::get('/halal', [PengajuanSertifikatController::class, 'halal'])->name('halal');
 Route::get('/koki', [PengajuanSertifikatController::class, 'koki'])->name('koki');
 Route::get('/asisten-koki', [PengajuanSertifikatController::class, 'asisten'])->name('asisten');
+Route::get('/finansial', [KelayakanUsahaController::class, 'finansial'])->name('finansial');
+Route::get('/operasional', [KelayakanUsahaController::class, 'operasional'])->name('operasional');
+Route::get('/pemasaran', [KelayakanUsahaController::class, 'pemasaran'])->name('pemasaran');
 
 // Rute untuk halaman anggota
 Route::get('/anggota/dashboard', function () {
