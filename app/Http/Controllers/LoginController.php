@@ -40,7 +40,7 @@ class LoginController extends Controller
             if ($user->role === 'admin') {
                 return redirect()->route('admin.dashboard');
             } elseif ($user->role === 'anggota') {
-                return redirect()->route('anggota.dashboard');
+                return redirect()->route('dashboard-anggota');
             } else {
                 return redirect()->route('landingPage'); // Halaman default jika role tidak sesuai
             }
@@ -51,7 +51,7 @@ class LoginController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
         Auth::logout();
         return redirect()->route('landingPage');
