@@ -54,4 +54,25 @@ class KelayakanUsahaController extends Controller
         return redirect()->route('anggota.kelayakan-usaha')->with('success', 'Pengajuan Kelayakan Pemasaran berhasil diajukan.');
         // return redirect()->back()->with('success', 'Pengajuan Kelayakan Pemasaran berhasil diajukan.');
     }
+
+    public function finansial()
+    {
+        $dataFinansial = KelayakanFinansial::all();
+
+        return view('admin.finansial', compact('dataFinansial'));
+    }
+
+    public function operasional()
+    {
+        $dataOperasional = KelayakanOperasional::all();
+
+        return view('admin.operasional', compact('dataOperasional'));
+    }
+
+    public function pemasaran()
+    {
+        $dataPemasaran = KelayakanPemasaran::all();
+
+        return view('admin.pemasaran', compact('dataPemasaran'));
+    }
 }
