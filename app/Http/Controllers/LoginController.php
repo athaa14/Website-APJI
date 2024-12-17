@@ -15,6 +15,7 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
+        // dd($request);
         // Validasi data yang dikirimkan
         $validated = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -32,7 +33,7 @@ class LoginController extends Controller
         if (Auth::attempt([
             'email' => $request->email,
             'password' => $request->password,
-           ])) {
+        ])) {
             // Jika autentikasi berhasil, periksa role pengguna
             $user = Auth::user();
 
@@ -45,15 +46,15 @@ class LoginController extends Controller
                 return redirect()->route('landingPage'); // Halaman default jika role tidak sesuai
             }
         } else {
-            // Jika autentikasi gagal
-            return back()->with('error', 'Password atau Email salah');
+            // Jika autentikasi gagal, set session error
+            return redirect()->route('loginForm')
+                ->with('error', 'Password atau Email salah');
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('loginForm');
-
+        return redirect()->route('landingPage');
     }
 }

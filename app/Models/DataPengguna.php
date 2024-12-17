@@ -6,15 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataPengguna extends Model
 {
-    // Nama tabel
     protected $table = 'data_pengguna';
 
-    // Kolom yang dapat diisi secara massal
     protected $fillable = [
         'email',
         'tipe_member',
         'nama_usaha',
         'alamat',
+        'provinsi',
         'kota',
         'kecamatan',
         'kode_pos',
@@ -27,8 +26,6 @@ class DataPengguna extends Model
         'j_usaha',
     ];
 
-    // Jika tabel ini memiliki kolom created_at dan updated_at, maka ini tetap true.
-    public $timestamps = false; // Atur menjadi true jika tabel memiliki timestamps.
-
-    // Tambahkan relasi jika ada hubungan dengan tabel lain
+    public $timestamps = false; // Sesuaikan jika tabel memiliki kolom created_at dan updated_at
 }
+
