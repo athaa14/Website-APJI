@@ -62,9 +62,7 @@
                     <button type="button" class="btn" onclick="nextStep()">Next</button>
                 </div>
 
-                <div class="login-link">
-                    Already have an account? <a href="{{ route('loginForm') }}">Sign In</a>
-                </div>
+                <p class="text-center mt-3">Bagian dari kami? <a href="{{ route('loginForm') }}">Masuk</a></p>
             </div>
 
             <!-- Step 2 - Address Information -->
