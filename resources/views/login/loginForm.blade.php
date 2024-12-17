@@ -21,7 +21,7 @@
                 <div class="login-icon" href="#">
                 <img src="{{ asset('assets/img/logo/logoapjifix.png') }}" alt="Logo mobili" style="width: 200px; height: auto;">
                 </div>
-                <h2 class="login-text">Selamat datang di Mobili</h2>
+                <h2 class="login-text">Selamat datang di Website APJI</h2>
                 <p>Silahkan Masukan Akun Anda</p>
                 
                 <form action="{{ route('authenticate') }}" method="POST">

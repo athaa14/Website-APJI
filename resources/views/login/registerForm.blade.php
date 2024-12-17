@@ -62,7 +62,7 @@
                     <button type="button" class="btn" onclick="nextStep()">Next</button>
                 </div>
 
-                <p class="text-center mt-3">Anggota Baru? <a href="{{ route('loginForm') }}">Daftar di sini</a></p>
+                <p class="text-center mt-3">Bagian dari kami? <a href="{{ route('loginForm') }}">Masuk</a></p>
             </div>
 
             <!-- Step 2 - Address Information -->
