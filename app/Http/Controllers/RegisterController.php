@@ -47,7 +47,6 @@ class RegisterController extends Controller
             // Simpan user dengan role anggota
             User::create([
                 'email' => $request->email,
-                'username' => $request->nama_pemilik,
                 'password' => Hash::make($request->password),
                 'nama' => $request->nama_pemilik,
                 'role' => 'anggota',

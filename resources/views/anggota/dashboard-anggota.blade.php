@@ -2,12 +2,12 @@
 @section('content')
  <!-- Container -->
  <div class="container-fluid">
-    <div class="row">
+    <div class="row flex-nowrap">
         <!-- Sidebar -->
         <x-sidebar-user/>
 
-       <!-- Main Content -->
-       <main class="col-md-9 ms-sm-auto col-lg-10 content">
+       <!-- Main Content and Footer -->
+       <main class="col-md-9 ms-sm-auto col-lg-10 content d-flex flex-column">
         <!-- Header Section -->
         <div class="header-section text-center py-4 bg-gradient">
             <h1 class="fw-bold text-black">Selamat Datang di Dashboard APJI</h1>
@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="row g-4 text-center">
                     <!-- Pengajuan Sertifikat Card -->
-                    <div class="col-md-6" >
+                    <div class="col-md-6">
                         <div class="card border-0 shadow-lg rounded-4 p-3 d-flex align-items-center justify-content-center" style="transition: transform 0.3s ease-in-out; height: 160px;">
                             <div class="text-center">
                                 <!-- Logo Icon for Pengajuan Sertifikat -->
@@ -52,7 +52,6 @@
                 <table class="table table-hover align-middle shadow-sm rounded-4 overflow-hidden">
                     <thead class="table-primary text-white">
                         <tr>
-                            {{-- <th>#</th> --}}
                             <th>Event</th>
                             <th>Tanggal</th>
                             <th>Tempat</th>
@@ -62,7 +61,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            {{-- <td>1</td> --}}
                             <td>Seminar Bisnis Kuliner Indonesia</td>
                             <td>15 Januari 2024</td>
                             <td>Jakarta</td>
@@ -74,7 +72,6 @@
                             </td>
                         </tr>
                         <tr>
-                            {{-- <td>2</td> --}}
                             <td>Workshop Pemasaran Digital</td>
                             <td>18 Januari 2024</td>
                             <td>Bandung</td>
@@ -86,7 +83,6 @@
                             </td>
                         </tr>
                         <tr>
-                            {{-- <td>3</td> --}}
                             <td>Webinar Tren Industri Jasa Boga</td>
                             <td>25 Januari 2024</td>
                             <td>Online</td>
@@ -101,7 +97,10 @@
                 </table>
             </div>
         </section>
+
     </main>
-    </div>
+</div>
+<!-- Footer -->
+@include('components.footer-user')
 </div>
 @endsection

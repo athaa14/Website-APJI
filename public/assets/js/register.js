@@ -4,43 +4,124 @@ document.addEventListener('DOMContentLoaded', function () {
     const progressSteps = document.querySelectorAll('.progress-step');
     let currentStep = 0;
 
+    // Fungsi untuk menampilkan toast dengan pesan kustom
+    function showToast(message, type = 'error') {
+        const backgroundColor = type === 'success' 
+            ? "linear-gradient(to right, #00b09b, #96c93d)" 
+            : "linear-gradient(to right, #ff5f6d, #ffc371)";
+
+        Toastify({
+            text: message,
+            duration: 3000,
+            gravity: "top",
+            position: "center",
+            backgroundColor: backgroundColor,
+            stopOnFocus: true,
+        }).showToast();
+    }
+
+    // Tambahkan toggle password visibility
+    function addPasswordVisibilityToggle() {
+        const passwordInputs = document.querySelectorAll('input[name="password"], input[name="password_confirmation"]');
+        
+        passwordInputs.forEach(passwordInput => {
+            // Buat wrapper untuk input
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('password-wrapper');
+            passwordInput.parentNode.insertBefore(wrapper, passwordInput);
+            wrapper.appendChild(passwordInput);
+
+            // Buat tombol toggle visibility
+            const toggleButton = document.createElement('button');
+            toggleButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            toggleButton.type = 'button';
+            toggleButton.classList.add('password-toggle');
+            
+            // Tambahkan event listener untuk toggle
+            toggleButton.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                } else {
+                    passwordInput.type = 'password';
+                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                }
+                passwordInput.focus();
+            });
+
+            // Masukkan tombol toggle setelah input
+            wrapper.appendChild(toggleButton);
+        });
+    }
+
     // Validasi langkah saat ini
     function validateStep(step) {
         const inputs = step.querySelectorAll('input, select');
         let isValid = true;
 
+        // Reset kesalahan sebelumnya
         inputs.forEach(input => {
-            // Reset kesalahan sebelumnya
             input.classList.remove('input-error');
+        });
+
+        inputs.forEach(input => {
+            const value = input.value.trim();
 
             // Periksa apakah input kosong
-            if (!input.value.trim()) {
-                input.classList.add('input-error'); // Tambahkan latar belakang merah
+            if (!value) {
+                input.classList.add('input-error');
                 isValid = false;
+                showToast(`Kolom ${input.placeholder} harus diisi`);
+                return;
             }
 
-            // Validasi tambahan untuk jenis input tertentu
+            // Validasi email
             if (input.name === 'email') {
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(input.value.trim())) {
+                if (!emailRegex.test(value)) {
                     input.classList.add('input-error');
                     isValid = false;
+                    showToast('Format email tidak valid');
                 }
             }
 
+            // Validasi password
             if (input.name === 'password') {
-                if (input.value.length < 8) {
+                if (value.length < 8) {
                     input.classList.add('input-error');
                     isValid = false;
+                    showToast('Password minimal 6 karakter');
                 }
             }
 
-            if (input.name === 'confirm-password') {
+            // Validasi konfirmasi password
+            if (input.name === 'password_confirmation') {
                 const passwordInput = document.querySelector('input[name="password"]');
-                if (input.value !== passwordInput.value) {
+                if (value !== passwordInput.value) {
                     input.classList.add('input-error');
                     passwordInput.classList.add('input-error');
                     isValid = false;
+                    showToast('Konfirmasi password tidak cocok');
+                }
+            }
+
+            // Validasi telepon (hanya angka)
+            if (input.name === 'no_telp') {
+                const phoneRegex = /^[0-9]+$/;
+                if (!phoneRegex.test(value)) {
+                    input.classList.add('input-error');
+                    isValid = false;
+                    showToast('Nomor telepon hanya boleh berisi angka');
+                }
+            }
+
+            // Validasi KTP/NIK (hanya angka)
+            if (input.name === 'no_ktp') {
+                const ktpRegex = /^[0-9]+$/;
+                if (!ktpRegex.test(value)) {
+                    input.classList.add('input-error');
+                    isValid = false;
+                    showToast('KTP/NIK hanya boleh berisi angka');
                 }
             }
         });
@@ -58,21 +139,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 steps[currentStep].classList.add('active');
                 updateProgressBar();
             } else {
-                // Validasi langkah terakhir selesai, kirim formulir
                 form.submit();
             }
-        } else {
-            Toastify({
-                text: "Harap lengkapi semua data dengan benar sebelum melanjutkan.",
-                duration: 3000, // Durasi toast
-                gravity: "top", // Posisi vertikal
-                position: "center", // Posisi horizontal
-                backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-                stopOnFocus: true, // Hentikan jika fokus pada toast
-            }).showToast();
         }
     }
-
 
     // Kembali ke langkah sebelumnya
     function prevStep() {
@@ -111,5 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     nextButtons.forEach(button => button.addEventListener('click', nextStep));
     backButtons.forEach(button => button.addEventListener('click', prevStep));
-});
 
+    // Tambahkan toggle password visibility saat dokumen dimuat
+    addPasswordVisibilityToggle();
+});

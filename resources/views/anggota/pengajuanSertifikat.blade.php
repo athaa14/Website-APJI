@@ -199,5 +199,7 @@
         </div>
     </main>
     </div>
+    <!-- Footer -->
+@include('components.footer-user')
 </div>
 @endsection

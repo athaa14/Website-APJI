@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.querySelector('form');
 
     loginForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
 
         // Get input values
         const emailInput = loginForm.querySelector('input[type="email"]');
@@ -76,30 +75,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    const successMessage = "{{ Session::get('success') }}";
-    const errorMessage = "{{ Session::get('error') }}";
+// document.addEventListener("DOMContentLoaded", function () {
+//     const successMessage = "{{ Session::get('success') }}";
+//     const errorMessage = "{{ Session::get('error') }}";
 
-    if (successMessage) {
-        Toastify({
-            text: successMessage,
-            duration: 3000,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
-            stopOnFocus: true,
-        }).showToast();
-    }
+//     if (successMessage) {
+//         Toastify({
+//             text: successMessage,
+//             duration: 3000,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#dc3545",
+//             stopOnFocus: true,
+//         }).showToast();
+//     }
 
-    if (errorMessage) {
-        Toastify({
-            text: errorMessage,
-            duration: 3000,
-            gravity: "top",
-            position: "right",
-            backgroundColor: "linear-gradient(to right, #ff5f6d, #ffc371)",
-            stopOnFocus: true,
-        }).showToast();
-    }
-});
+//     if (errorMessage) {
+//         Toastify({
+//             text: errorMessage,
+//             duration: 3000,
+//             gravity: "top",
+//             position: "right",
+//             backgroundColor: "#28a745",
+//             stopOnFocus: true,
+//         }).showToast();
+//     }
+// });
 
