@@ -23,7 +23,7 @@
             </div>
 
             <!-- Events Section -->
-            <div class="simple-container pt-5">
+            <div class="simple-container pt-1">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     @forelse ($event as $event)
                     <div class="col">
@@ -68,8 +68,9 @@
                     @endforelse
                 </div>
             </div> --}}
-
         </main>
+        <!-- Footer -->
+    @include('components.footer-user')
     </div>
 </div>
 @endsection  
